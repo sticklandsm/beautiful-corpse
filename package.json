@@ -10,7 +10,7 @@
     "start": "ts-node server/index.ts",
     "test": "jest",
     "test:watch": "jest --noStackTrace --watchAll",
-    "dev": "run-p dev:client dev:server",
+    "dev": "run-p dev:client dev:server tailwind",
     "dev:client": "npm run webpack -- --watch",
     "dev:server": "nodemon server/index.ts",
     "build": "run-p build:client build:server",
@@ -18,7 +18,8 @@
     "build:server": "npm run knex -- migrate:latest",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
     "webpack": "webpack --config ./client/webpack.config.js",
-    "knex": "knex --knexfile ./server/db/knexfile.js"
+    "knex": "knex --knexfile ./server/db/knexfile.js",
+    "tailwind": "tailwind -i server/public/styles.css -o server/public/dist/output.css --watch"
   },
   "babel": {
     "presets": [
@@ -42,9 +43,11 @@
     "@redux-devtools/extension": "^3.2.3",
     "express": "^4.17.2",
     "knex": "^2.3.0",
+    "multer": "^1.4.5-lts.1",
     "pg": "^8.8.0",
     "sqlite3": "^5.1.2",
-    "superagent": "7.1.1"
+    "superagent": "7.1.1",
+    "tailwindcss": "^3.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.15.6",
@@ -58,8 +61,10 @@
     "@reduxjs/toolkit": "^1.9.3",
     "@testing-library/react": "^13.4",
     "@types/express": "^4.17.14",
+    "@types/multer": "^1.4.7",
     "@types/react": "^18.0.23",
     "@types/react-dom": "^18.0.7",
+    "@types/superagent": "^4.1.17",
     "babel-loader": "^8.2.2",
     "eslint": "^8.10.0",
     "eslint-plugin-import": "^2.25.4",
