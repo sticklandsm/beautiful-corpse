@@ -7,7 +7,7 @@ type CanvasSettings = {
 
 const initialState: CanvasSettings = {
   lineColour: 'cyan',
-  resetCanvasTrueOrFalse: false,
+  resetCanvasTrueOrFalse: true,
 }
 
 const canvasSettingsSlice = createSlice({

@@ -10,5 +10,5 @@ export interface Prompt extends PromptDB {
 export interface gameRound {
   round: number
   prompt: string
-  drawing: BinaryData
+  drawing: string
 }

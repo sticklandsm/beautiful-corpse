@@ -6,7 +6,9 @@
 exports.up = function (knex) {
   return knex.schema.createTable('game', (table) => {
     table.increments('id')
+    table.integer('round')
     table.integer('number_of_rounds')
+    table.string('status')
   })
 }
 

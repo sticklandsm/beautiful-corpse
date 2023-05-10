@@ -25,16 +25,31 @@ function useCanvas(scale: number) {
     }
 
     if (resetCanvasTrueOrFalse) {
+      const screenWidth = window.innerWidth
+      const screenHeight = window.innerHeight
+
+      if (screenWidth < 600) {
+        canvas.width = screenWidth * 0.9
+        console.log('width less then 600: ', screenWidth)
+      } else {
+        canvas.width = screenWidth * scale * 0.7
+        console.log('width more then 600: ', screenWidth)
+      }
+      canvas.height = screenHeight * scale
+      if (screenHeight > 600) {
+        canvas.height = screenHeight * (scale * 1.3)
+        console.log('height more than 600: ', screenHeight)
+      } else {
+        canvas.height = screenHeight * scale
+        console.log('height less than 600: ', screenHeight)
+      }
+    }
+
+    if (resetCanvasTrueOrFalse) {
       context.clearRect(0, 0, canvas.width, canvas.height)
       dispatch(resetCanvas(false))
     }
 
-    if (!(canvas.width === window.innerWidth * scale)) {
-      const screenWidth = window.innerWidth
-      const screenHeight = window.innerHeight
-      canvas.width = screenWidth * scale
-      canvas.height = screenHeight * scale
-    }
     let isDrawing = false
     let lastX = 0
     let lastY = 0
@@ -50,7 +65,7 @@ function useCanvas(scale: number) {
         return
       }
       context.strokeStyle = lineColour
-      context.lineWidth = 50
+      context.lineWidth = 5
 
       const currentX = event.offsetX
       const currentY = event.offsetY

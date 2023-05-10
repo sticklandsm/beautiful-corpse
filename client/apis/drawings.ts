@@ -1,35 +1,25 @@
-import request from 'superagent'
-import { DrawingDB, DrawingWithFormData } from '../../models/Drawing'
-
-const rootUrl = '/api/v1/game/'
-
-export async function addDrawing(drawingToAdd: DrawingDB) {
+export async function addDrawing(drawingBinary: Blob, gameId: number) {
   const formData = new FormData()
 
-  formData.append('file', drawingToAdd.drawingBinary)
-  formData.append('gameId', drawingToAdd.gameId.toString())
-  // const drawingWithFormData = {
-  //   drawingFormData: formData,
-  //   gameId: drawingToAdd.gameId,
-  // } as drawingWithFormData
+  formData.append('file', drawingBinary)
+  formData.append('gameId', gameId.toString())
 
-  fetch('/api/v1/game', {
+  fetch('/api/v1/game/drawing', {
     method: 'POST',
     body: formData,
   })
-    .then((response) => {
-      console.log('File uploaded successfully')
+    .then(() => {
+      console.log('sent the post')
     })
     .catch((error) => {
       console.error('Error uploading file:', error)
     })
 }
 
-export async function getDrawingById(id: number) {
-  // return request.get(rootUrl + '/drawing').then((res) => {
-  //   return res.body.fruits
-  // })
+export async function getLastDrawingByGameId(gameId: number) {
+  const response = await fetch(`/api/v1/game/drawing/${gameId}`)
+  const base64String = (await response.text()).trim()
+  const cleanBase64String = base64String.replace(/^"|"$/g, '')
 
-  const fetchedDrawing = await request.get(rootUrl + '/drawing/' + id)
-  console.log(fetchedDrawing.body)
+  return `data:image/png;base64,${cleanBase64String}`
 }

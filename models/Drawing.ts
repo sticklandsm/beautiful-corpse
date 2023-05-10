@@ -3,17 +3,17 @@ export interface DrawingDB {
   gameId: number
 }
 
-export interface drawing extends DrawingDB {
+export interface Drawing extends DrawingDB {
   id: number
 }
 
-export interface drawingWithFormData {
+export interface DrawingWithFormData {
   drawingFormData: FormData
   gameId: number
 }
 
 export interface DrawingDbBinary {
-  drawingBinary: BinaryData
+  drawingBinary: Buffer
   gameId: number
 }
 

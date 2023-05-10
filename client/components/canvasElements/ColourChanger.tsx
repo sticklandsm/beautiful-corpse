@@ -1,5 +1,5 @@
-import { useAppDispatch } from '../hooks'
-import { changeColour } from '../slices/canvasSettings'
+import { useAppDispatch } from '../../hooks'
+import { changeColour } from '../../slices/canvasSettings'
 
 interface Props {
   colourToChangeTo: string
@@ -7,6 +7,7 @@ interface Props {
 
 export default function ColourChanger(props: Props) {
   const { colourToChangeTo } = props
+
   const dispatch = useAppDispatch()
 
   function changeColourClickHandler(evt: React.MouseEvent<HTMLButtonElement>) {
@@ -15,11 +16,12 @@ export default function ColourChanger(props: Props) {
   }
 
   return (
-    <button
-      onClick={changeColourClickHandler}
-      style={{ backgroundColor: colourToChangeTo }}
-    >
-      {colourToChangeTo}
-    </button>
+    <div className="">
+      <button
+        className="rounded-full md:w-14 md:h-14 w-16 h-16"
+        onClick={changeColourClickHandler}
+        style={{ backgroundColor: colourToChangeTo }}
+      ></button>
+    </div>
   )
 }
