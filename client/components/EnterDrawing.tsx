@@ -17,7 +17,7 @@ export default function EnterDrawing() {
   }, [gameId])
 
   return (
-    <>
+    <div className="h-max">
       {!drawingSubmitted && (
         <>
           <div>
@@ -43,6 +43,6 @@ export default function EnterDrawing() {
           <TurnFinished gameId={gameId as string} />{' '}
         </>
       )}
-    </>
+    </div>
   )
 }

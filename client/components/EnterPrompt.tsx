@@ -9,6 +9,7 @@ import TurnFinished from './TurnFinished'
 export default function EnterPrompt() {
   const { gameId, roundId } = useParams()
   const [drawingTag, setDrawingTag] = useState('')
+  const isItFirstRound = Number(roundId) === 1
 
   const [promptState, setPromptState] = useState('')
   const [promptSubmitted, changePromptSubmitted] = useState(false)
@@ -31,6 +32,7 @@ export default function EnterPrompt() {
     evt: React.FormEvent<HTMLFormElement> | React.FormEvent<HTMLButtonElement>
   ) {
     evt.preventDefault()
+    if (promptState === '') return
     const promptToAdd = { prompt: promptState, gameId: Number(gameId) }
 
     await addPrompt(promptToAdd)
@@ -39,30 +41,62 @@ export default function EnterPrompt() {
   }
 
   return (
-    <>
-      {roundId !== '1' && <ShowImage drawingTag={drawingTag} />}
+    <div className="flex flex-col items-center justify-center ">
       {!promptSubmitted && (
         <>
-          <h2>Enter prompt</h2>
+          <div className="text-teal-500 text-3xl font-extrabold">
+            {isItFirstRound
+              ? 'Please enter your first prompt'
+              : 'Look at this beautiful Artwork!'}
+          </div>
+
           <form onSubmit={handleSubmit}>
-            <label htmlFor="gameId">Enter Prompt</label>
-            <input
-              type="text"
-              name="prompt"
-              onChange={changeHandler}
-              placeholder="Enter Prompt"
-            />
-            <button type="submit" onSubmit={handleSubmit}>
-              GO
-            </button>
+            <div className="flex flex-col items-center justify-center ">
+              <label
+                className=" text-orange-700 text-3xl font-extrabold"
+                htmlFor="gameId"
+              >
+                {isItFirstRound
+                  ? 'Make it something fun'
+                  : 'But What does it mean?'}
+              </label>
+            </div>
+            <br />
+            <div className="flex flex-row items-center justify-center text-black-900 ">
+              <input
+                className="font-extrabold md:text-2xl text-xl border-2 border-black-900"
+                type="text"
+                name="prompt"
+                onChange={changeHandler}
+                placeholder={
+                  isItFirstRound
+                    ? 'For Example, Disco Spiders'
+                    : '"I interpet this as..."'
+                }
+              />
+              <div className="px-1"></div>
+
+              <button
+                className='className="m-3 md:p-3 p-4 rounded-3xl  hover:bg-lime-600 bg-lime-500  text-lime-900  font-extrabold md:text-2xl text-xl drop-shadow-lg'
+                type="submit"
+                onSubmit={handleSubmit}
+              >
+                GO
+              </button>
+            </div>
           </form>
+          {!promptSubmitted && !isItFirstRound && (
+            <ShowImage drawingTag={drawingTag} />
+          )}
         </>
       )}
+      <br />
+
       {promptSubmitted && (
         <>
           <TurnFinished gameId={gameId as string} />{' '}
         </>
       )}
-    </>
+    </div>
   )
 }

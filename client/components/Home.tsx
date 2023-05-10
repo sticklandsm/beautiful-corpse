@@ -69,7 +69,8 @@ export default function Home() {
     evt: React.FormEvent<HTMLFormElement> | React.FormEvent<HTMLButtonElement>
   ) {
     evt.preventDefault
-    if (gameId === 0) return
+
+    if (!Number(gameId)) return
     navigate('/showResults/' + gameId)
   }
   function newGameHandler() {

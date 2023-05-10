@@ -5,7 +5,7 @@ import { useState } from 'react'
 
 function App() {
   const [darkMode, setDarkMode] = useState(
-    JSON.parse(localStorage.getItem('darkMode') || 'false')
+    JSON.parse(localStorage.getItem('darkMode') || 'true')
   )
 
   return (
