@@ -9,7 +9,8 @@ export default function Home() {
   const [continueGameShowModal, setContinueGameShowModal] = useState(false)
   const [checkGameShowModal, setCheckGameShowModal] = useState(false)
   const [showError, setShowError] = useState(false)
-  const [error, setError] = useState('')
+  const [error, setError] = useState(<></>)
+  const [roundNumber, setRoundNumber] = useState(0)
 
   const continueGameModalContent = (
     <div className="">
@@ -27,18 +28,18 @@ export default function Home() {
           onSubmit={handleSubmitContinue}
         >
           GO
-          {showError && (
-            <div className="absolute text-xs bg-black-50 top-0 left-full ml-2 px-2 py-1 rounded">
-              {error}
-            </div>
-          )}
         </button>
+        {showError && (
+          <div className="absolute text-sm bg-black-50 top-0 md:left-full ml-2 px-2 py-1 rounded">
+            {error}
+          </div>
+        )}
       </form>
     </div>
   )
 
   const checkGameModalContent = (
-    <form onSubmit={handleSubmitCheckGame}>
+    <form className="flex" onSubmit={handleSubmitCheckGame}>
       <input
         type="text"
         name="gameId"
@@ -52,18 +53,18 @@ export default function Home() {
         className="rounded-3xl text-lg bg-lime-500  text-lime-900"
       >
         GO
-        {showError && (
-          <div className="absolute text-xs bg-black-50 top-0 left-full ml-2 px-2 py-1 rounded">
-            {error}
-          </div>
-        )}
       </button>
+      {showError && (
+        <div className="md:w-36 absolute text-sm bg-black-50 top-0 md:left-full ml-2 px-2 py-1 rounded">
+          {error}
+        </div>
+      )}
     </form>
   )
 
   function clearErrors() {
     setShowError(false)
-    setError('')
+    setError(<></>)
     setGameId(0)
   }
 
@@ -76,14 +77,14 @@ export default function Home() {
   ) {
     evt.preventDefault()
     if (!Number(gameId)) {
-      setError('You have type a number')
+      setError(<p>You have to type a number</p>)
       setShowError(true)
       return
     }
     getGameStatus(gameId)
       .then((status) => {
         if (!status.success) {
-          setError(status.response)
+          setError(<p>{status.response}</p>)
           setShowError(true)
           return
         }
@@ -102,17 +103,41 @@ export default function Home() {
   ) {
     evt.preventDefault()
     if (!Number(gameId)) {
-      setError('You have type a number')
+      setError(<p>You have to type a number</p>)
       setShowError(true)
       return
     }
     getGameStatus(gameId)
       .then((status) => {
         if (!status.success) {
-          setError(status.response)
+          setError(<p>{status.response}</p>)
           setShowError(true)
           return
         }
+        setRoundNumber(status.response.round)
+        if (status.response.round < 5) {
+          setError(
+            <>
+              <p className="text-center">
+                {' '}
+                That game has only had {Number(status.response.round - 1)}{' '}
+                rounds. <br />
+                Are you sure you want to check it now?{' '}
+              </p>
+              <div className="flex justify-center">
+                <button
+                  onClick={() => navigate('/showResults/' + gameId)}
+                  className="p-4 border-2 w-1/2"
+                >
+                  Yes
+                </button>
+              </div>
+            </>
+          )
+          setShowError(true)
+          return
+        }
+
         setShowError(false)
         navigate('/showResults/' + gameId)
       })
@@ -134,25 +159,25 @@ export default function Home() {
   return (
     <div className={`flex flex-col`}>
       <button
-        className=" p-14 rounded-3xl hover:bg-teal-600  bg-teal-500 text-teal-900 font-extrabold md:text-7xl text-5xl drop-shadow-lg"
+        className=" md:p-14 p-8 rounded-3xl hover:bg-teal-600  bg-teal-500 text-teal-900 font-extrabold md:text-7xl text-5xl drop-shadow-lg"
         onClick={newGameHandler}
       >
         {' '}
         New Game...
       </button>
       <button
-        className=" p-14 rounded-3xl hover:bg-orange-600 bg-orange-500  text-orange-900 font-extrabold md:text-7xl text-5xl drop-shadow-lg"
+        className=" md:p-14 p-8 rounded-3xl hover:bg-orange-600 bg-orange-500  text-orange-900 font-extrabold md:text-7xl text-5xl drop-shadow-lg"
         onClick={() => setContinueGameShowModal(() => true)}
       >
         {' '}
         Continue Game...
       </button>
       <button
-        className=" p-14 rounded-3xl hover:bg-lime-600 bg-lime-500  text-lime-900 font-extrabold  md:text-7xl text-5xl drop-shadow-lg"
+        className=" md:p-14 p-8  rounded-3xl hover:bg-lime-600 bg-lime-500  text-lime-900 font-extrabold  md:text-7xl text-5xl drop-shadow-lg"
         onClick={() => setCheckGameShowModal(() => true)}
       >
         {' '}
-        Check Completed Game...
+        Check Game...
       </button>
 
       <Modal
