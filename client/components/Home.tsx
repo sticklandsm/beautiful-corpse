@@ -134,21 +134,21 @@ export default function Home() {
   return (
     <div className={`flex flex-col`}>
       <button
-        className=" p-14 rounded-3xl hover:bg-teal-600  bg-teal-500 text-teal-900 font-extrabold text-7xl drop-shadow-lg"
+        className=" p-14 rounded-3xl hover:bg-teal-600  bg-teal-500 text-teal-900 font-extrabold md:text-7xl text-5xl drop-shadow-lg"
         onClick={newGameHandler}
       >
         {' '}
         New Game...
       </button>
       <button
-        className=" p-14 rounded-3xl hover:bg-orange-600 bg-orange-500  text-orange-900 font-extrabold text-7xl drop-shadow-lg"
+        className=" p-14 rounded-3xl hover:bg-orange-600 bg-orange-500  text-orange-900 font-extrabold md:text-7xl text-5xl drop-shadow-lg"
         onClick={() => setContinueGameShowModal(() => true)}
       >
         {' '}
         Continue Game...
       </button>
       <button
-        className=" p-14 rounded-3xl hover:bg-lime-600 bg-lime-500  text-lime-900 font-extrabold text-7xl drop-shadow-lg"
+        className=" p-14 rounded-3xl hover:bg-lime-600 bg-lime-500  text-lime-900 font-extrabold  md:text-7xl text-5xl drop-shadow-lg"
         onClick={() => setCheckGameShowModal(() => true)}
       >
         {' '}
