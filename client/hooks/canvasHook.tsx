@@ -11,6 +11,13 @@ function useCanvas(scale: number) {
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
 
+  const getTouchPos = (canvas: HTMLCanvasElement, touch: Touch) => {
+    const rect = canvas.getBoundingClientRect()
+    const x = touch.clientX - rect.left
+    const y = touch.clientY - rect.top
+    return { offsetX: x, offsetY: y }
+  }
+
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) {
@@ -59,6 +66,12 @@ function useCanvas(scale: number) {
       lastX = event.offsetX
       lastY = event.offsetY
     }
+    const handleTouchStart = (event: TouchEvent) => {
+      isDrawing = true
+      const { offsetX, offsetY } = getTouchPos(canvas, event.touches[0])
+      lastX = offsetX
+      lastY = offsetY
+    }
 
     const handleMouseMove = (event: MouseEvent) => {
       if (!isDrawing) {
@@ -79,18 +92,45 @@ function useCanvas(scale: number) {
       lastY = currentY
     }
 
+    const handleTouchMove = (event: TouchEvent) => {
+      event.preventDefault()
+      if (!isDrawing) {
+        return
+      }
+      const { offsetX, offsetY } = getTouchPos(canvas, event.touches[0])
+      context.strokeStyle = lineColour
+      context.lineWidth = 5
+
+      context.beginPath()
+      context.moveTo(lastX, lastY)
+      context.lineTo(offsetX, offsetY)
+      context.stroke()
+
+      lastX = offsetX
+      lastY = offsetY
+    }
+
     const handleMouseUp = () => {
+      isDrawing = false
+    }
+    const handleTouchEnd = () => {
       isDrawing = false
     }
 
     canvas.addEventListener('mousedown', handleMouseDown)
     canvas.addEventListener('mousemove', handleMouseMove)
     canvas.addEventListener('mouseup', handleMouseUp)
+    canvas.addEventListener('touchstart', handleTouchStart, false)
+    canvas.addEventListener('touchmove', handleTouchMove, false)
+    canvas.addEventListener('touchend', handleTouchEnd, false)
 
     return () => {
       canvas.removeEventListener('mousedown', handleMouseDown)
       canvas.removeEventListener('mousemove', handleMouseMove)
       canvas.removeEventListener('mouseup', handleMouseUp)
+      canvas.removeEventListener('touchstart', handleTouchStart, false)
+      canvas.removeEventListener('touchmove', handleTouchMove, false)
+      canvas.removeEventListener('touchend', handleTouchEnd, false)
     }
   }, [lineColour, resetCanvasTrueOrFalse, scale])
 

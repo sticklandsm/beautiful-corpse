@@ -33,6 +33,50 @@ export default function Canvas(props: Props) {
     'black',
     'white',
   ]
+  const colourlistTwo = [
+    'aqua',
+    'coral',
+    'crimson',
+    'fuchsia',
+    'indigo',
+    'lime',
+    'maroon',
+    'navy',
+    'olive',
+    'silver',
+    'tan',
+    'violet',
+  ]
+
+  const colourListThree = [
+    'white',
+    'black',
+    'burnt sienna',
+    'yellow ochre',
+    'cadmium yellow',
+    'lemon yellow',
+    'sap green',
+    'viridian',
+    'ultramarine blue',
+    'phthalo blue',
+    'alizarin crimson',
+    'cadmium red',
+  ]
+
+  const colourListFour = [
+    'titanium white',
+    'ivory black',
+    'burnt umber',
+    'raw umber',
+    'raw sienna',
+    'cadmium orange',
+    'cerulean blue',
+    'cobalt blue',
+    'manganese blue',
+    'permanent rose',
+    'permanent yellow',
+    'vermilion',
+  ]
 
   const resetCanvasHandler = () => {
     dispatch(resetCanvas(true))
@@ -119,7 +163,7 @@ export default function Canvas(props: Props) {
             />
           </div>
           <div className="grid md:grid-cols-2 grid-cols-4 gap-1 bg-black-500 md:py-9 md:px-0 px-10  rounded-full">
-            {coloursList.map((colour) => {
+            {colourlistTwo.map((colour) => {
               return <ColourChanger key={colour} colourToChangeTo={colour} />
             })}
           </div>
