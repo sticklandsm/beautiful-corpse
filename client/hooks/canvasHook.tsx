@@ -5,6 +5,7 @@ import { resetCanvas } from '../slices/canvasSettings'
 function useCanvas(scale: number) {
   const dispatch = useAppDispatch()
   const lineColour = useAppSelector((state) => state.canvasSettings.lineColour)
+  const brushSize = useAppSelector((state) => state.canvasSettings.brushWidth)
   const resetCanvasTrueOrFalse = useAppSelector(
     (state) => state.canvasSettings.resetCanvasTrueOrFalse
   )
@@ -37,18 +38,14 @@ function useCanvas(scale: number) {
 
       if (screenWidth < 600) {
         canvas.width = screenWidth * 0.9
-        console.log('width less then 600: ', screenWidth)
       } else {
         canvas.width = screenWidth * scale * 0.7
-        console.log('width more then 600: ', screenWidth)
       }
       canvas.height = screenHeight * scale
       if (screenHeight > 600) {
         canvas.height = screenHeight * (scale * 1.3)
-        console.log('height more than 600: ', screenHeight)
       } else {
         canvas.height = screenHeight * scale
-        console.log('height less than 600: ', screenHeight)
       }
     }
 
@@ -78,7 +75,7 @@ function useCanvas(scale: number) {
         return
       }
       context.strokeStyle = lineColour
-      context.lineWidth = 5
+      context.lineWidth = brushSize
 
       const currentX = event.offsetX
       const currentY = event.offsetY
@@ -99,7 +96,7 @@ function useCanvas(scale: number) {
       }
       const { offsetX, offsetY } = getTouchPos(canvas, event.touches[0])
       context.strokeStyle = lineColour
-      context.lineWidth = 5
+      context.lineWidth = brushSize
 
       context.beginPath()
       context.moveTo(lastX, lastY)
@@ -132,7 +129,7 @@ function useCanvas(scale: number) {
       canvas.removeEventListener('touchmove', handleTouchMove, false)
       canvas.removeEventListener('touchend', handleTouchEnd, false)
     }
-  }, [lineColour, resetCanvasTrueOrFalse, scale])
+  }, [brushSize, lineColour, resetCanvasTrueOrFalse, scale])
 
   return canvasRef
 }

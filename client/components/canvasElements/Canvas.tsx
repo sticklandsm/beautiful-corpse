@@ -6,6 +6,7 @@ import { nextRound } from '../../apis/game'
 import ColourChanger from './ColourChanger'
 import { useState, useEffect } from 'react'
 import Modal from '../Modal'
+import BrushChanger from './BrushChanger'
 
 interface Props {
   drawingSubmitted: boolean
@@ -31,7 +32,7 @@ export default function Canvas(props: Props) {
     'brown',
     'grey',
     'black',
-    'white',
+    'rgb(226 232 240)',
   ]
   const colourlistTwo = [
     'aqua',
@@ -77,6 +78,8 @@ export default function Canvas(props: Props) {
     'permanent yellow',
     'vermilion',
   ]
+
+  const brushSizes = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120]
 
   const resetCanvasHandler = () => {
     dispatch(resetCanvas(true))
@@ -149,7 +152,7 @@ export default function Canvas(props: Props) {
       </div>
       <div className="flex items-center justify-center dark:bg-slate-800">
         <div className="flex flex-wrap justify-center items-center ">
-          <div className="grid md:grid-cols-2 grid-cols-4 gap-1 bg-black-500 md:py-9 md:px-0 px-10  rounded-full">
+          <div className="grid md:grid-cols-2 grid-cols-4 gap-1 bg-black-500 md:py-9 md:px-0 px-10 md:w-auto w-screen rounded-full">
             {coloursList.map((colour) => {
               return <ColourChanger key={colour} colourToChangeTo={colour} />
             })}
@@ -157,16 +160,12 @@ export default function Canvas(props: Props) {
 
           <div>
             <canvas
-              className="md:border-[20px] border-[10px] border-lime-500 text-lime-900 text-3xl  bg-white"
+              className="md:border-[20px] border-[10px] border-lime-500 text-lime-900 text-3xl bg-slate-200"
               id="canvas"
               ref={canvasRef}
             />
           </div>
-          <div className="grid md:grid-cols-2 grid-cols-4 gap-1 bg-black-500 md:py-9 md:px-0 px-10  rounded-full">
-            {colourlistTwo.map((colour) => {
-              return <ColourChanger key={colour} colourToChangeTo={colour} />
-            })}
-          </div>
+          <BrushChanger />
         </div>
       </div>
     </>

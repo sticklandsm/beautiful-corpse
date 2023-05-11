@@ -40,7 +40,7 @@ export default function GameCarousel() {
 
   return (
     <>
-      <div className="w-full md:w-3/5 h-4/6 relative m-auto dark:bg-black-300">
+      <div className="w-full md:w-3/5 h-4/6 relative m-auto dark:bg-white">
         <div className=" flex items-center justify-center h-full border-[20px] border-lime-500 text-lime-900 text-3xl font-extrabold">
           {arrayOfElements[currentElementNumber] &&
             arrayOfElements[currentElementNumber]}

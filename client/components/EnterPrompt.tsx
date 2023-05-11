@@ -41,7 +41,7 @@ export default function EnterPrompt() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center ">
+    <div className="flex flex-col items-center justify-center dark:bg-slate-800 ">
       {!promptSubmitted && (
         <>
           <form onSubmit={handleSubmit}>

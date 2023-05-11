@@ -17,7 +17,6 @@ export default function TurnFinished(props: Props) {
   async function handleCopyClick() {
     try {
       await navigator.clipboard.writeText(pageUrl)
-      console.log('Content copied to clipboard')
       setIsCopied(true)
       setTimeout(() => {
         setIsCopied(false)

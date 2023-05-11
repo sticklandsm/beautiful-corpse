@@ -21,6 +21,7 @@ export default function Header(props: Props) {
         <div className="flex-col sm:flex-row max-w-screen-full flex items-center justify-center mx-auto p-4  ">
           <div className="flex items-center">
             <button
+              className="cursor-default"
               onClick={() => {
                 kickSandcastle(() => !sandcastleKicked)
               }}

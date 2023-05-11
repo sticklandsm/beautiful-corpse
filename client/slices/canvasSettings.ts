@@ -3,11 +3,13 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 type CanvasSettings = {
   lineColour: string
   resetCanvasTrueOrFalse: boolean
+  brushWidth: number
 }
 
 const initialState: CanvasSettings = {
-  lineColour: 'cyan',
+  lineColour: 'black',
   resetCanvasTrueOrFalse: true,
+  brushWidth: 5,
 }
 
 const canvasSettingsSlice = createSlice({
@@ -28,7 +30,13 @@ const canvasSettingsSlice = createSlice({
 
       return newCanvasSettings
     },
+    changeBrushWidth: (state, action: PayloadAction<number>) => {
+      const newBrushWidth = action.payload
+      const newCanvasSettings = { ...state, brushWidth: newBrushWidth }
+      return newCanvasSettings
+    },
   },
 })
-export const { changeColour, resetCanvas } = canvasSettingsSlice.actions
+export const { changeColour, resetCanvas, changeBrushWidth } =
+  canvasSettingsSlice.actions
 export default canvasSettingsSlice.reducer
