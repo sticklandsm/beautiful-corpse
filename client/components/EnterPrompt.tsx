@@ -6,6 +6,11 @@ import { getLastDrawingByGameId } from '../apis/drawings'
 import ShowImage from './ShowImage'
 import TurnFinished from './TurnFinished'
 
+function randomIntFromInterval(min: number, max: number) {
+  // min and max included
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
 export default function EnterPrompt() {
   const { gameId, roundId } = useParams()
   const [drawingTag, setDrawingTag] = useState('')
@@ -69,7 +74,9 @@ export default function EnterPrompt() {
                 onChange={changeHandler}
                 placeholder={
                   isItFirstRound
-                    ? 'For Example, Disco Spiders'
+                    ? `For Example, ${
+                        subjects[randomIntFromInterval(0, subjects.length - 1)]
+                      }`
                     : 'I interpet this as...'
                 }
               />
@@ -103,3 +110,53 @@ export default function EnterPrompt() {
     </div>
   )
 }
+
+const subjects = [
+  'Rainbow elephants',
+  'Galactic unicorns',
+  'Techno gorillas',
+  'Pirate llamas',
+  'Jungle robots',
+  'Cybernetic mermaids',
+  'Astral koalas',
+  'Medieval cyborgs',
+  'Arctic dragons',
+  'Neon flamingos',
+  'Time-traveling sloths',
+  'Space llamas',
+  'Mystic pandas',
+  'Ghost pirates',
+  'Digital seagulls',
+  'Cosmic kangaroos',
+  'Cyberspace bees',
+  'Ancient aliens',
+  'Steampunk penguins',
+  'Samurai squirrels',
+  'Electric zebras',
+  'Crystal tigers',
+  'Mechanical wolves',
+  'Glittery rhinos',
+  'Futuristic pandas',
+  'Enchanted dragons',
+  'Flaming icebergs',
+  'Robotic hummingbirds',
+  'Lunar unicorns',
+  'Mythical llamas',
+  'Alien octopuses',
+  'Supernatural flamingos',
+  'Timeless jellyfish',
+  'Interdimensional sloths',
+  'Ethereal sharks',
+  'Invisible unicorns',
+  'Mystical penguins',
+  'Crazy camels',
+  'Rainbow dolphins',
+  'Hyperactive hippos',
+  'Sonic elephants',
+  'Cosmic snails',
+  'Magical meerkats',
+  'Dreaming sloths',
+  'Solar owls',
+  'Pixelated monkeys',
+  'Virtual llamas',
+]
