@@ -111,19 +111,19 @@ export default function EnterPrompt() {
 }
 
 const subjects = [
-  'Specific cave paintings',
+  'Oddly specific cave paintings',
   'Doctor Whom',
   'Sean wearing a hat',
   'Rainbow elephants',
-  'Galactic unicorns',
-  'Techno gorillas',
+  'Imperial unicorns',
+  'Pretentious gorillas',
   'Pirate llamas',
   'Jungle robots',
   'Cybernetic mermaids',
   'Astral koalas',
   'Medieval cyborgs',
   'Arctic dragons',
-  'Neon flamingos',
+  'Cyberpunk flamingos',
   'Time-traveling sloths',
   'Space llamas',
   'Mystic pandas',
@@ -151,6 +151,7 @@ const subjects = [
   'Ethereal sharks',
   'Invisible unicorns',
   'Mystical penguins',
+  'Wisdom vs Intelligence',
   'Crazy camels',
   'Rainbow dolphins',
   'Hyperactive hippos',
@@ -161,4 +162,5 @@ const subjects = [
   'Solar owls',
   'Pixelated monkeys',
   'Virtual llamas',
+  'A weirdo in a cape',
 ]
