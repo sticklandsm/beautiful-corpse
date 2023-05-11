@@ -43,7 +43,6 @@ export default function EnterDrawing() {
           <TurnFinished
             gameId={gameId as string}
             roundId={Number(roundId) + 1}
-            nextTurn="prompt"
           />
         </>
       )}

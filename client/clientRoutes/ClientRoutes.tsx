@@ -3,6 +3,7 @@ import Home from '../components/Home'
 import EnterPrompt from '../components/EnterPrompt'
 import EnterDrawing from '../components/EnterDrawing'
 import GameCarousel from '../components/GameCarousel'
+import ContinueGame from '../components/ContinueGame'
 
 export default function ClientRoutes() {
   return (
@@ -19,6 +20,7 @@ export default function ClientRoutes() {
           element={<EnterDrawing />}
         />
         <Route path="/showResults/:gameId" element={<GameCarousel />} />
+        <Route path="/continue/:gameId" element={<ContinueGame />} />
       </Routes>
     </>
   )

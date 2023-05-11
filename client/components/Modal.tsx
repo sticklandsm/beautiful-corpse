@@ -24,8 +24,7 @@ export default function Modal(props: Props) {
       >
         <div
           onClick={(evt) => evt.stopPropagation()}
-          className="dark:text-gray-400  cursor-default bg-white p-6 rounded-lg shadow-lg"
-          style={{ transform: 'translate(-0%, -50%)' }}
+          className="max-w-3xl dark:text-gray-400  cursor-default dark:bg-slate-800 bg-slate-200  p-6 rounded-lg shadow-lg"
         >
           {content}
         </div>

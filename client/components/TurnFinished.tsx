@@ -4,14 +4,12 @@ import { RiFileCopy2Line, RiFileCopy2Fill } from 'react-icons/ri'
 interface Props {
   gameId: string | number
   roundId: string | number
-  nextTurn: string
 }
 export default function TurnFinished(props: Props) {
-  const { gameId, roundId, nextTurn } = props
+  const { gameId } = props
   const [isCopied, setIsCopied] = useState(false)
-  const directoryName = window.location.origin // get the last part of the URL
-  // const directoryName = ''
-  const pageUrl = `${directoryName}/game/${gameId}/round/${roundId}/${nextTurn}` // construct the URL for the "my-page" page
+  const directoryName = window.location.origin
+  const pageUrl = `${directoryName}/continue/${gameId}` // construct the URL for the "my-page" page
   const inputRef = useRef(null) // create a ref to the input element
 
   async function handleCopyClick() {

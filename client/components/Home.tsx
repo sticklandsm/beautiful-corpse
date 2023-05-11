@@ -6,11 +6,36 @@ import Modal from './Modal'
 export default function Home() {
   const navigate = useNavigate()
   const [gameId, setGameId] = useState(0)
+
+  const [newGameShowModal, setNewGameShowModal] = useState(false)
   const [continueGameShowModal, setContinueGameShowModal] = useState(false)
   const [checkGameShowModal, setCheckGameShowModal] = useState(false)
+
   const [showError, setShowError] = useState(false)
   const [error, setError] = useState(<></>)
-  const [roundNumber, setRoundNumber] = useState(0)
+
+  const newGameModalContent = (
+    <div className="flex flex-col items-center justify-center dark:bg-slate-800 dark:text-gray-400">
+      <div className="md:text-2xl text-lg dark ">
+        {`This is an online game based on the pen and paper game Telephone Pictionary. You'll be asked
+        to give a prompt. It can be anything from a phrase or a movie title to a friends name. Once submitted, you'll get a link to share with your
+        friends. The first person will draw something based on your prompt, and
+        the next person will have to guess what the prompt was based only on
+        that drawing. This goes on with more people drawing and guessing and
+        sharing, and the drawings getting more and more purple monkey
+        dishwasher. When a few people have gone, you can go to the Check Game
+        section and see all the drawings and how they changed from the original
+        prompt. Have fun!`}
+      </div>{' '}
+      <br />
+      <button
+        className="p-6 rounded-xl hover:bg-orange-600 bg-orange-500  text-orange-900 font-extrabold text-xl drop-shadow-lg"
+        onClick={newGameHandler}
+      >
+        I got it
+      </button>
+    </div>
+  )
 
   const continueGameModalContent = (
     <div className="">
@@ -114,7 +139,7 @@ export default function Home() {
           setShowError(true)
           return
         }
-        setRoundNumber(status.response.round)
+
         if (status.response.round < 5) {
           setError(
             <>
@@ -160,7 +185,7 @@ export default function Home() {
     <div className={`flex flex-col`}>
       <button
         className=" md:p-14 p-8 rounded-3xl hover:bg-teal-600  bg-teal-500 text-teal-900 font-extrabold md:text-7xl text-5xl drop-shadow-lg"
-        onClick={newGameHandler}
+        onClick={() => setNewGameShowModal(() => true)}
       >
         {' '}
         New Game...
@@ -180,6 +205,11 @@ export default function Home() {
         Check Game...
       </button>
 
+      <Modal
+        content={newGameModalContent}
+        isOpen={newGameShowModal}
+        setIsOpen={setNewGameShowModal}
+      />
       <Modal
         content={continueGameModalContent}
         isOpen={continueGameShowModal}

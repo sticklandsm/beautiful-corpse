@@ -103,7 +103,6 @@ export default function EnterPrompt() {
           <TurnFinished
             gameId={gameId as string}
             roundId={Number(roundId) + 1}
-            nextTurn="drawing"
           />
         </>
       )}
@@ -112,6 +111,9 @@ export default function EnterPrompt() {
 }
 
 const subjects = [
+  'Specific cave paintings',
+  'Doctor Whom',
+  'Sean wearing a hat',
   'Rainbow elephants',
   'Galactic unicorns',
   'Techno gorillas',
@@ -145,7 +147,7 @@ const subjects = [
   'Alien octopuses',
   'Supernatural flamingos',
   'Timeless jellyfish',
-  'Interdimensional sloths',
+  'Active sloths',
   'Ethereal sharks',
   'Invisible unicorns',
   'Mystical penguins',
@@ -153,7 +155,7 @@ const subjects = [
   'Rainbow dolphins',
   'Hyperactive hippos',
   'Sonic elephants',
-  'Cosmic snails',
+  'Fast snails',
   'Magical meerkats',
   'Dreaming sloths',
   'Solar owls',
