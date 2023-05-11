@@ -7,7 +7,7 @@ import { getLastPromptbyGameId } from '../apis/prompts'
 
 export default function EnterDrawing() {
   const [lastPrompt, setLastPrompt] = useState('')
-  const { gameId } = useParams()
+  const { gameId, roundId } = useParams()
   const [drawingSubmitted, setDrawingSubmitted] = useState(false)
 
   useEffect(() => {
@@ -40,7 +40,11 @@ export default function EnterDrawing() {
       )}
       {drawingSubmitted && (
         <>
-          <TurnFinished gameId={gameId as string} />{' '}
+          <TurnFinished
+            gameId={gameId as string}
+            roundId={Number(roundId) + 1}
+            nextTurn="drawing"
+          />
         </>
       )}
     </div>

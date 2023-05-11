@@ -11,14 +11,11 @@ function App() {
   return (
     <>
       <div className={darkMode ? 'dark' : ''}>
-        <div
-          className="app h-screen dark:bg-slate-800 dark:text-gray-400"
-          style={{ minHeight: '100vh', position: 'relative' }}
-        >
+        <div className="app h-screen dark:bg-slate-800 dark:text-gray-400">
           <Header setDarkMode={setDarkMode} darkMode={darkMode} />
           <ClientRoutes />
+          <Footer />
         </div>
-        <Footer />
       </div>
     </>
   )

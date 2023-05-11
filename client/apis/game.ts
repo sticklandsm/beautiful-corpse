@@ -11,7 +11,8 @@ export async function getNewGameId(rounds: number) {
 
 export async function getGameStatus(gameId: number) {
   const gameStatus = await request.get(rootUrl + 'gamestatus/' + gameId)
-  return gameStatus.body
+  if (gameStatus.body) return { success: true, response: gameStatus.body }
+  return { success: false, response: 'Could not find that game' }
 }
 
 export async function nextRound(gameId: number, status: string) {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { addPrompt } from '../apis/prompts'
 import { nextRound } from '../apis/game'
 import { getLastDrawingByGameId } from '../apis/drawings'
@@ -94,7 +94,11 @@ export default function EnterPrompt() {
 
       {promptSubmitted && (
         <>
-          <TurnFinished gameId={gameId as string} />{' '}
+          <TurnFinished
+            gameId={gameId as string}
+            roundId={Number(roundId) + 1}
+            nextTurn="drawing"
+          />
         </>
       )}
     </div>

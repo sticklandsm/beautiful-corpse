@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default function Modal(props: Props) {
-  const { isOpen, content, setIsOpen } = props
+  const { isOpen, content, setIsOpen, onClose } = props
 
   return (
     <>
@@ -18,6 +18,7 @@ export default function Modal(props: Props) {
         } justify-center items-center z-50`}
         style={{ backdropFilter: 'blur(5px)' }}
         onClick={() => {
+          if (onClose) onClose()
           setIsOpen(false)
         }}
       >

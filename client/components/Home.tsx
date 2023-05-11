@@ -8,6 +8,8 @@ export default function Home() {
   const [gameId, setGameId] = useState(0)
   const [continueGameShowModal, setContinueGameShowModal] = useState(false)
   const [checkGameShowModal, setCheckGameShowModal] = useState(false)
+  const [showError, setShowError] = useState(false)
+  const [error, setError] = useState('')
 
   const continueGameModalContent = (
     <div className="">
@@ -16,6 +18,7 @@ export default function Home() {
           type="text"
           name="gameId"
           onChange={changeHandler}
+          value={gameId ? gameId : ''}
           placeholder="Enter Game ID"
         />
         <button
@@ -24,6 +27,11 @@ export default function Home() {
           onSubmit={handleSubmitContinue}
         >
           GO
+          {showError && (
+            <div className="absolute text-xs bg-black-50 top-0 left-full ml-2 px-2 py-1 rounded">
+              {error}
+            </div>
+          )}
         </button>
       </form>
     </div>
@@ -35,6 +43,7 @@ export default function Home() {
         type="text"
         name="gameId"
         onChange={changeHandler}
+        value={gameId ? gameId : ''}
         placeholder="Enter Game ID"
       />
       <button
@@ -43,9 +52,20 @@ export default function Home() {
         className="rounded-3xl text-lg bg-lime-500  text-lime-900"
       >
         GO
+        {showError && (
+          <div className="absolute text-xs bg-black-50 top-0 left-full ml-2 px-2 py-1 rounded">
+            {error}
+          </div>
+        )}
       </button>
     </form>
   )
+
+  function clearErrors() {
+    setShowError(false)
+    setError('')
+    setGameId(0)
+  }
 
   function changeHandler(evt: React.ChangeEvent<HTMLInputElement>) {
     setGameId(() => +evt.target.value)
@@ -55,23 +75,50 @@ export default function Home() {
     evt: React.FormEvent<HTMLFormElement> | React.FormEvent<HTMLButtonElement>
   ) {
     evt.preventDefault()
-    if (gameId === 0) return
+    if (!Number(gameId)) {
+      setError('You have type a number')
+      setShowError(true)
+      return
+    }
     getGameStatus(gameId)
       .then((status) => {
-        navigate(`/game/${gameId}/round/${status.round}/${status.status}`)
+        if (!status.success) {
+          setError(status.response)
+          setShowError(true)
+          return
+        }
+        setShowError(false)
+        navigate(
+          `/game/${gameId}/round/${status.response.round}/${status.response.status}`
+        )
       })
       .catch((error) => {
         console.error(error)
       })
   }
 
-  function handleSubmitCheckGame(
+  async function handleSubmitCheckGame(
     evt: React.FormEvent<HTMLFormElement> | React.FormEvent<HTMLButtonElement>
   ) {
-    evt.preventDefault
-
-    if (!Number(gameId)) return
-    navigate('/showResults/' + gameId)
+    evt.preventDefault()
+    if (!Number(gameId)) {
+      setError('You have type a number')
+      setShowError(true)
+      return
+    }
+    getGameStatus(gameId)
+      .then((status) => {
+        if (!status.success) {
+          setError(status.response)
+          setShowError(true)
+          return
+        }
+        setShowError(false)
+        navigate('/showResults/' + gameId)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
   function newGameHandler() {
     getNewGameId(3)
@@ -112,11 +159,13 @@ export default function Home() {
         content={continueGameModalContent}
         isOpen={continueGameShowModal}
         setIsOpen={setContinueGameShowModal}
+        onClose={clearErrors}
       />
       <Modal
         content={checkGameModalContent}
         isOpen={checkGameShowModal}
         setIsOpen={setCheckGameShowModal}
+        onClose={clearErrors}
       />
     </div>
   )
