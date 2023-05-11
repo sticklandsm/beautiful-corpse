@@ -32,7 +32,7 @@ export default function TurnFinished(props: Props) {
       <div className="flex flex-col items-center justify-center text-center text-teal-500 text-3xl font-extrabold">
         <h2 className="mb-8">
           Your Game ID is{' '}
-          <span className="text-4xl text-teal-700">{gameId}</span>, please give
+          <span className="text-4xl text-lime-500">{gameId}</span>, please give
           this to whoever you are playing with.
         </h2>
         <h2 className=" text-orange-500 mb-8">Or send them this link:</h2>

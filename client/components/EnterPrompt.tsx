@@ -44,16 +44,15 @@ export default function EnterPrompt() {
     <div className="flex flex-col items-center justify-center ">
       {!promptSubmitted && (
         <>
-          <div className="text-teal-500 text-3xl font-extrabold">
-            {isItFirstRound
-              ? 'Please enter your first prompt'
-              : 'Look at this beautiful Artwork!'}
-          </div>
-
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col items-center justify-center ">
+              <label className="text-teal-500 text-3xl font-extrabold text-center">
+                {isItFirstRound
+                  ? 'Please enter your first prompt'
+                  : 'Look at this beautiful Artwork!'}
+              </label>
               <label
-                className=" text-orange-700 text-3xl font-extrabold"
+                className=" text-orange-700 text-3xl font-extrabold "
                 htmlFor="gameId"
               >
                 {isItFirstRound
@@ -71,10 +70,10 @@ export default function EnterPrompt() {
                 placeholder={
                   isItFirstRound
                     ? 'For Example, Disco Spiders'
-                    : '"I interpet this as..."'
+                    : 'I interpet this as...'
                 }
               />
-              <div className="px-1"></div>
+              <div className="md:px-1"></div>
 
               <button
                 className='className="m-3 md:p-3 p-4 rounded-3xl  hover:bg-lime-600 bg-lime-500  text-lime-900  font-extrabold md:text-2xl text-xl drop-shadow-lg'
