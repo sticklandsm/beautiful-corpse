@@ -641,20 +641,12 @@ video {
   width: 100vw;
 }
 
-.max-w-xl {
-  max-width: 36rem;
-}
-
 .max-w-3xl {
   max-width: 48rem;
 }
 
 .flex-1 {
   flex: 1 1 0%;
-}
-
-.transform {
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .cursor-default {
@@ -1092,10 +1084,5 @@ video {
   .md\:text-7xl {
     font-size: 4.5rem;
     line-height: 1;
-  }
-
-  .md\:text-xl {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
   }
 }

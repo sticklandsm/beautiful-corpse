@@ -74,7 +74,7 @@ export default function EnterPrompt() {
                 onChange={changeHandler}
                 placeholder={
                   isItFirstRound
-                    ? `For Example, ${
+                    ? `e.g. ${
                         subjects[randomIntFromInterval(0, subjects.length - 1)]
                       }`
                     : 'I interpet this as...'
