@@ -48,43 +48,45 @@ export default function Home() {
           placeholder="Enter Game ID"
         />
         <button
-          className="rounded-3xl text-lg bg-orange-500 text-orange-900 "
+          className="relative rounded-3xl text-lg bg-orange-500 text-orange-900 "
           type="submit"
           onSubmit={handleSubmitContinue}
         >
           GO
+          {showError && (
+            <div className="absolute text-sm bg-black-50 top-0 md:left-full ml-2 px-2 py-1 rounded">
+              {error}
+            </div>
+          )}
         </button>
-        {showError && (
-          <div className="absolute text-sm bg-black-50 top-0 md:left-full ml-2 px-2 py-1 rounded">
-            {error}
-          </div>
-        )}
       </form>
     </div>
   )
 
   const checkGameModalContent = (
-    <form className="flex" onSubmit={handleSubmitCheckGame}>
-      <input
-        type="text"
-        name="gameId"
-        onChange={changeHandler}
-        value={gameId ? gameId : ''}
-        placeholder="Enter Game ID"
-      />
-      <button
-        type="submit"
-        onSubmit={handleSubmitCheckGame}
-        className="rounded-3xl text-lg bg-lime-500  text-lime-900"
-      >
-        GO
-      </button>
-      {showError && (
-        <div className="md:w-36 absolute text-sm bg-black-50 top-0 md:left-full ml-2 px-2 py-1 rounded">
-          {error}
-        </div>
-      )}
-    </form>
+    <div>
+      <form className="flex" onSubmit={handleSubmitCheckGame}>
+        <input
+          type="text"
+          name="gameId"
+          onChange={changeHandler}
+          value={gameId ? gameId : ''}
+          placeholder="Enter Game ID"
+        />
+        <button
+          type="submit"
+          onSubmit={handleSubmitCheckGame}
+          className=" relative rounded-3xl text-lg bg-lime-500  text-lime-900"
+        >
+          GO
+          {showError && (
+            <div className="md:w-40  absolute text-sm bg-black-50 top-0 md:left-full ml-2 px-2 py-1 rounded">
+              {error}
+            </div>
+          )}
+        </button>
+      </form>
+    </div>
   )
 
   function clearErrors() {
@@ -127,6 +129,7 @@ export default function Home() {
     evt: React.FormEvent<HTMLFormElement> | React.FormEvent<HTMLButtonElement>
   ) {
     evt.preventDefault()
+
     if (!Number(gameId)) {
       setError(<p>You have to type a number</p>)
       setShowError(true)
@@ -152,7 +155,7 @@ export default function Home() {
               <div className="flex justify-center">
                 <button
                   onClick={() => navigate('/showResults/' + gameId)}
-                  className="p-4 border-2 w-1/2"
+                  className="md:p-4 p-1 border-2 w-11/12"
                 >
                   Yes
                 </button>

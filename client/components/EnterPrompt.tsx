@@ -113,7 +113,7 @@ export default function EnterPrompt() {
 const subjects = [
   'Oddly specific cave paintings',
   'Doctor Whom',
-  'Sean wearing a hat',
+  'Sean but wearing a hat',
   'Rainbow elephants',
   'Imperial unicorns',
   'Pretentious gorillas',
