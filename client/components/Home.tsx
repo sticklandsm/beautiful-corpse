@@ -15,9 +15,9 @@ export default function Home() {
   const [error, setError] = useState(<></>)
 
   const newGameModalContent = (
-    <div className="flex flex-col items-center justify-center dark:bg-slate-800 dark:text-gray-400">
-      <div className="md:text-2xl text-lg dark ">
-        {`This is an online game based on the pen and paper game Telephone Pictionary. You'll be asked
+    <div className="flex flex-col items-center justify-center dark:bg-slate-800 dark:text-gray-400 text-center max-w-3xl">
+      <div className="md:text-2xl text-lg dark  ">
+        <p>{`This is an online game based on the pen and paper game Telephone Pictionary. You'll be asked
         to give a prompt. It can be anything from a phrase or a movie title to a friends name. Once submitted, you'll get a link to share with your
         friends. The first person will draw something based on your prompt, and
         the next person will have to guess what the prompt was based only on
@@ -25,14 +25,16 @@ export default function Home() {
         sharing, and the drawings getting more and more purple monkey
         dishwasher. When a few people have gone, you can go to the Check Game
         section and see all the drawings and how they changed from the original
-        prompt. Have fun!`}
+        prompt.`}</p>
+        <br />
+        <p>{`Have fun!`}</p>
       </div>{' '}
       <br />
       <button
         className="p-6 rounded-xl hover:bg-orange-600 bg-orange-500  text-orange-900 font-extrabold text-xl drop-shadow-lg"
         onClick={newGameHandler}
       >
-        I got it
+        Didn&apos;t I already read this?
       </button>
     </div>
   )
@@ -185,29 +187,29 @@ export default function Home() {
 
   // backdrop-blur-3xl
   return (
-    <div className={`flex flex-col`}>
+    <div className={`flex flex-col items-center`}>
       <button
-        className=" md:p-14 p-8 rounded-3xl hover:bg-teal-600  bg-teal-500 text-teal-900 font-extrabold md:text-7xl text-5xl drop-shadow-lg"
+        className="homeButtons min-w-full md:p-14 p-8 rounded-3xl hover:bg-teal-600  bg-teal-500 text-teal-900 font-extrabold md:text-7xl text-5xl drop-shadow-lg"
         onClick={() => setNewGameShowModal(() => true)}
       >
         {' '}
         New Game...
       </button>
       <button
-        className=" md:p-14 p-8 rounded-3xl hover:bg-orange-600 bg-orange-500  text-orange-900 font-extrabold md:text-7xl text-5xl drop-shadow-lg"
+        className="homeButtons min-w-full md:p-14 p-8 rounded-3xl hover:bg-orange-600 bg-orange-500  text-orange-900 font-extrabold md:text-7xl text-5xl drop-shadow-lg"
         onClick={() => setContinueGameShowModal(() => true)}
       >
         {' '}
         Continue Game...
       </button>
       <button
-        className=" md:p-14 p-8  rounded-3xl hover:bg-lime-600 bg-lime-500  text-lime-900 font-extrabold  md:text-7xl text-5xl drop-shadow-lg"
+        className="homeButtons min-w-full md:p-14 p-8  rounded-3xl hover:bg-lime-600 bg-lime-500  text-lime-900 font-extrabold  md:text-7xl text-5xl drop-shadow-lg"
         onClick={() => setCheckGameShowModal(() => true)}
       >
         {' '}
         Check Game...
       </button>
-    
+
       <Modal
         content={newGameModalContent}
         isOpen={newGameShowModal}
