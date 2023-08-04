@@ -8,9 +8,7 @@ export async function addDrawing(drawingBinary: Blob, gameId: number) {
     method: 'POST',
     body: formData,
   })
-    .then(() => {
-      console.log('sent the post')
-    })
+    .then(() => {})
     .catch((error) => {
       console.error('Error uploading file:', error)
     })

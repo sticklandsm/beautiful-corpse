@@ -27,7 +27,7 @@ export default function BrushChanger(props: Props) {
             onClick={(evt) =>
               currentBrush < 135 && changeBrushClickHandler(evt, 10)
             }
-            className="md:pb-0 pb-3 md:h-1/3 md:w-auto w-1/3 text-9xl"
+            className="md:pb-0 pb-3 md:h-1/3 md:w-auto w-1/3 text-9xl text-gray-400"
           >
             +
           </button>
@@ -56,7 +56,7 @@ export default function BrushChanger(props: Props) {
             onClick={(evt) =>
               currentBrush !== 10 && changeBrushClickHandler(evt, -10)
             }
-            className="md:pb-0 pb-3 md:h-1/3 md:w-auto w-1/3 text-9xl"
+            className="md:pb-0 pb-3 md:h-1/3 md:w-auto w-1/3 text-9xl text-gray-400"
           >
             -
           </button>

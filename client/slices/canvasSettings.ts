@@ -4,12 +4,16 @@ type CanvasSettings = {
   lineColour: string
   resetCanvasTrueOrFalse: boolean
   brushWidth: number
+  canvasHistory: []
+  undoneState: any
 }
 
 const initialState: CanvasSettings = {
   lineColour: 'black',
   resetCanvasTrueOrFalse: true,
   brushWidth: 5,
+  history: [],
+  undoneState: '',
 }
 
 const canvasSettingsSlice = createSlice({
@@ -34,6 +38,15 @@ const canvasSettingsSlice = createSlice({
       const newBrushWidth = action.payload
       const newCanvasSettings = { ...state, brushWidth: newBrushWidth }
       return newCanvasSettings
+    },
+    addDrawing: (state, action) => {
+      state.canvasHistory.push(action.payload)
+    },
+    undoLastDrawing: (state) => {
+      if (state.canvasHistory.length > 0) {
+        state.undoneState = state.canvasHistory.slice()
+        state.canvasHistory.pop()
+      }
     },
   },
 })

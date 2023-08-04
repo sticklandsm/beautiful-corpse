@@ -207,7 +207,7 @@ export default function Home() {
         {' '}
         Check Game...
       </button>
-
+    
       <Modal
         content={newGameModalContent}
         isOpen={newGameShowModal}
