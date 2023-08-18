@@ -44,12 +44,13 @@ function App() {
   return (
     <>
       <div className={darkMode ? 'dark ' : ''}>
-        <div className="app h-screen dark:bg-slate-800 dark:text-gray-400">
+        <div
+          className="app relative  min-h-screen flex flex-col dark:bg-slate-800 dark:text-gray-400"
+          style={{ minHeight: '100vh' }}
+        >
           <Header setDarkMode={setDarkMode} darkMode={darkMode} />
           <ClientRoutes />
-          <br />
-          <br />
-          <br />
+
           <Footer showInstructionsAgain={sethowToPlayShowModal} />
         </div>
       </div>

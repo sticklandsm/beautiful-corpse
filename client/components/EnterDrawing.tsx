@@ -29,7 +29,7 @@ export default function EnterDrawing() {
               {lastPrompt}
             </p>
           </div>
-          <div>
+          <div className="md:min-h-[875px] min-h-[1110px]">
             <Canvas
               drawingSubmitted={drawingSubmitted}
               setDrawingSubmitted={setDrawingSubmitted}
