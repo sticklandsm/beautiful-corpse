@@ -13,7 +13,7 @@ export default function ShowImage(props: Props) {
 
   return (
     <div className=" h-auto relative m-auto ">
-      <div className="flex items-center justify-center h-full border-[20px] border-lime-500 text-lime-900 text-3xl font-extrabold dark:bg-slate-200 bg-slate-200">
+      <div className="flex items-center justify-center h-full border-[20px] border-lime-500 text-lime-900 text-3xl font-extrabold  bg-slate-200">
         {<img src={drawingTag} alt="retrieved" />}
       </div>
     </div>
