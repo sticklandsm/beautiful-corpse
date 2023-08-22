@@ -2,9 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-@media (min-width: 768px){
+@media (min-width: 1000px){
   .homeButtons{
     min-width: 46rem
   }
+  
 }
+
 

@@ -6,9 +6,14 @@ interface Props {
 
 export default function ShowImage(props: Props) {
   const { drawingTag } = props
+
+  const drawing = new Image()
+
+  drawing.src = drawingTag
+
   return (
-    <div className="w-full md:w-2/6 h-auto relative m-auto dark:bg-slate-200 bg-slate-200">
-      <div className="flex items-center justify-center h-full border-[20px] border-lime-500 text-lime-900 text-3xl font-extrabold">
+    <div className=" h-auto relative m-auto ">
+      <div className="flex items-center justify-center h-full border-[20px] border-lime-500 text-lime-900 text-3xl font-extrabold dark:bg-slate-200 bg-slate-200">
         {<img src={drawingTag} alt="retrieved" />}
       </div>
     </div>
