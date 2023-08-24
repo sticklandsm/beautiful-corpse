@@ -47,8 +47,8 @@ export default function EnterPrompt() {
 
   return (
     <div
-      className="flex flex-col items-center justify-center dark:bg-slate-800  md:min-h-[110vh] sm:min-h-[90vh] min-h-[70vh] min-[360px]:min-h-[86vh]"
-      // style={{ minHeight: 'inherit' }}
+      className={`flex flex-col items-center justify-center dark:bg-slate-800  md:min-h-[100vh] sm:min-h-[90vh] min-h-[70vh] min-[360px]:min-h-[86vh]`}
+      style={isItFirstRound ? { minHeight: '60vh' } : {}}
     >
       {!promptSubmitted && (
         <>
